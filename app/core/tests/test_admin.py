@@ -1,10 +1,13 @@
 """
 Tests for the Django admin modifications.
 """
+from decimal import Decimal
+
 from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 
+from core import models
 
 class AdminSiteTests(TestCase):
     """Tests for Django admin."""
@@ -44,3 +47,6 @@ class AdminSiteTests(TestCase):
         res = self.client.get(url)
 
         self.assertEqual(res.status_code, 200)
+
+    def test_create_recipe(self):
+        """Test creating a recipe is successful."""
