@@ -47,6 +47,3 @@ class AdminSiteTests(TestCase):
         res = self.client.get(url)
 
         self.assertEqual(res.status_code, 200)
-
-    def test_create_recipe(self):
-        """Test creating a recipe is successful."""
