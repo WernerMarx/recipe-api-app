@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 
 from core import models
 
+
 class ModelTests(TestCase):
     """Test models."""
 
@@ -63,7 +64,7 @@ class ModelTests(TestCase):
             title='Sample recipe name',
             time_minutes=5,
             price=Decimal('5.50'),
-            description= 'Sample reciple description.',
+            description='Sample reciple description.',
         )
 
-        self.assertEqual(str(recipe), recipe.title)    
+        self.assertEqual(str(recipe), recipe.title)

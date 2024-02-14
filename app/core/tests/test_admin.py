@@ -1,13 +1,11 @@
 """
 Tests for the Django admin modifications.
 """
-from decimal import Decimal
 
 from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 
-from core import models
 
 class AdminSiteTests(TestCase):
     """Tests for Django admin."""
