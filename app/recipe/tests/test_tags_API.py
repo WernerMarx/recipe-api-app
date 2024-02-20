@@ -88,3 +88,13 @@ class PrivateTagsApiTests(TestCase):
     
     def test_delete_tag(self):
         """Test deleting a tag."""
+        tag = Tag.objects.create(user=self.user, name='Test Tag')
+
+        url = detail_url(tag.id)
+        res = self.client.delete(url)
+
+        tags = Tag.objects.filter(user=self.user)
+
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(Tag.objects.filter(id=tag.id).exists())
+        self.assertFalse(tags.exists())
