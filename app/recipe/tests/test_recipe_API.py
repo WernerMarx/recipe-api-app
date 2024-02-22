@@ -32,9 +32,11 @@ def detail_url(recipe_id):
     """Create and return a recipe detail URL."""
     return reverse('recipe:recipe-detail', args=[recipe_id])
 
+
 def image_upload_url(recipe_id):
     """Create and return an image upload URL."""
     return reverse('recipe:recipe-upload-image', args=[recipe_id])
+
 
 def create_recipe(user, **params):
     """Create and return sample recipe"""
@@ -395,7 +397,7 @@ class PrivateRecipeAPITests(TestCase):
         r2.tags.add(tag2)
         r3 = create_recipe(user=self.user, title='Fish and chips')
 
-        params = {'tags': f'{tag1.id},{tag2.id}'}
+        params = {'tags': f'{tag1.id}, {tag2.id}'}
         res = self.client.get(RECIPES_URL, params)
 
         s1 = RecipeSerializer(r1)
@@ -415,7 +417,7 @@ class PrivateRecipeAPITests(TestCase):
         r2.ingredients.add(in2)
         r3 = create_recipe(user=self.user, title='Red Lentil Daal')
 
-        params = {'ingredients': f'{in1.id},{in2.id}'}
+        params = {'ingredients': f'{in1.id}, {in2.id}'}
         res = self.client.get(RECIPES_URL, params)
 
         s1 = RecipeSerializer(r1)
@@ -424,6 +426,7 @@ class PrivateRecipeAPITests(TestCase):
         self.assertIn(s1.data, res.data)
         self.assertIn(s2.data, res.data)
         self.assertNotIn(s3.data, res.data)
+
 
 class ImageUploadTests(TestCase):
     """Tests for the image upload API."""
@@ -462,4 +465,3 @@ class ImageUploadTests(TestCase):
         res = self.client.post(url, payload, format='multipart')
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-
