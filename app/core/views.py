@@ -8,4 +8,4 @@ from rest_framework.response import Response
 def health_check(request):
     """Returns successful response."""
     data = {'health': True}
-    return Response(data, content_type='application/json')
+    return Response(data)
